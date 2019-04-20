@@ -7,7 +7,6 @@ namespace Northwind.Models
 {
     public class Order
     {
-        //comment
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
         public int EmployeeID { get; set; }
