@@ -12,6 +12,6 @@ namespace Northwind.Controllers
         private INorthwindRepository repository;
         public OrderController(INorthwindRepository repo) => repository = repo;
 
-        public ActionResult Index() => View(repository.Orders.Where(o => o.RequiredDate <= DateTime.Now));
+        public ActionResult Index() => View(repository.Orders.Where(o => o.RequiredDate <= DateTime.Now && o.ShippedDate == null));
     }
 }
