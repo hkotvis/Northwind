@@ -1,17 +1,14 @@
 ﻿@using Northwind.Models
 @model IEnumerable<Order>
 
-<select id="Options" name="Options">
-
+<br />
+<select id="Options" name="Options" class="form-control">
     <option value="Past Required Date">Past Required Date</option>
-
     <option value="Week from Required Date">Week from Required Date</option>
-
     <option value="Required Today">Required Today</option>
-
-    <option selected="selected" value="Required Today"></option>
-
+    <option selected="selected" value="All">View All</option>
 </select>
+<br />
 <table class="table table-hover">
     <thead>
         <tr>
@@ -22,14 +19,15 @@
         </tr>
     </thead>
     <tbody>
+        
         @foreach (Order o in Model)
         {
-        <tr>
+            <tr>
                 <td><a asp-action="OrderDetail" asp-route-id="@o.OrderID" class="list-group-item list-group-item-action">@o.OrderID</a></td>
                 <td class="text-right">@o.OrderDate</td>
                 <td class="text-right">@o.ShippedDate</td>
                 <td class="text-right">@o.RequiredDate</td>
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
