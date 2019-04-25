@@ -2,13 +2,22 @@
 @model IEnumerable<Order>
 
 <br />
-<select id="Options" name="Options" class="form-control">
-    <option value="Past Required Date">Past Required Date</option>
-    <option value="Week from Required Date">Week from Required Date</option>
-    <option value="Required Today">Required Today</option>
-    <option selected="selected" value="All">View All</option>
-</select>
+<div class="btn-group" id="Options" name="Options" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary">Past Required Date</button>
+    <button type="button" class="btn btn-secondary">Week from Required Date</button>
+    <button type="button" class="btn btn-secondary">Required Today</button>
+</div>
+
 <br />
+@using (Html.BeginForm("Index", "Order", FormMethod.Get))
+
+{
+
+    <b>Search By Ship Name</b>
+
+    @Html.TextBox("searchShipName")<input type="submit" value="Search" />
+
+}
 <table class="table table-hover">
     <thead>
         <tr>
@@ -19,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        
+
         @foreach (Order o in Model)
         {
             <tr>
