@@ -51,6 +51,15 @@
                         }
                     </div>
                 </li>
+                <!--I added this for Orders drop down-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-users"></i> Orders
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="orderDropdown">
+                        <a class="dropdown-item" asp-controller="Order" asp-action="Index"><i class="fas fa-list-ul"></i> Browse Orders</a>
+                    </div>
+                </li>
             </ul>
             @if (User?.Identity?.IsAuthenticated ?? false)
             {

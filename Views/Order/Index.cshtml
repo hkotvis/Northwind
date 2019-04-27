@@ -1,39 +1,49 @@
 ﻿@using Northwind.Models
 @model IEnumerable<Order>
 
-<select id="Options" name="Options">
 
-    <option value="Past Required Date">Past Required Date</option>
+        <!--<select id="Options" name="Options">
 
-    <option value="Week from Required Date">Week from Required Date</option>
+             <option value="Past Required Date" asp-controller="RequiredEndedController" asp-action="Index">7 Past Required Date</option>
 
-    <option value="Required Today">Required Today</option>
+             <option value="Week from Required Date">Week from Required Date</option>
 
-    <option selected="selected" value="Required Today"></option>
+             <option value="Required Today">Required Today</option>
 
-</select>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Order ID</th>
-            <th scope="col" class="text-right">Order Date</th>
-            <th scope="col" class="text-right">Shipped Date</th>
-            <th scope="col" class="text-right">Required Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Order o in Model)
+             <option selected="selected" value="Required Today"></option>
+
+         </select>-->
+        @using (Html.BeginForm("Index", "Order", FormMethod.Get))
         {
-        <tr>
-                <td><a asp-action="OrderDetail" asp-route-id="@o.OrderID" class="list-group-item list-group-item-action">@o.OrderID</a></td>
-                <td class="text-right">@o.OrderDate</td>
-                <td class="text-right">@o.ShippedDate</td>
-                <td class="text-right">@o.RequiredDate</td>
-        </tr>
+            <b>Search By Ship Name</b>
+            @Html.TextBox("searchShipName")<input type="submit" value="Search" placeholder="Ernst Handel"/>
         }
-    </tbody>
-</table>
-<a class="navbar-brand" asp-controller="Order" asp-action="Next"><i class="far fa-compass"></i> Next</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col" class="text-right">Order Date</th>
+                    <th scope="col" class="text-right">Required Date</th>
+                    <th scope="col" class="text-right">Ship Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (Order o in Model)
+                    {
+                        <tr>
+                            <td><a asp-action="OrderDetail" asp-route-id="@o.OrderID" class="list-group-item list-group-item-action">@o.OrderID</a></td>
+                            <td class="text-right">@o.OrderDate</td>
+                            <td class="text-right">@o.RequiredDate</td>
+                            <td class="text-right">@o.ShipName</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        <a class="navbar-brand" asp-controller="Order" asp-action="Next"><i class="far fa-compass"></i> Next</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
