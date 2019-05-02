@@ -1,6 +1,7 @@
 ﻿@using Northwind.Models
 @model IEnumerable<Order>
 
+<<<<<<< HEAD
 
         <!--<select id="Options" name="Options">
 
@@ -17,6 +18,44 @@
         {
             <b>Search By Ship Name</b>
             @Html.TextBox("searchShipName")<input type="submit" value="Search" placeholder="Ernst Handel"/>
+=======
+<br />
+<div class="btn-group" id="Options" name="Options" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary">Past Required Date</button>
+    <button type="button" class="btn btn-secondary">Week from Required Date</button>
+    <button type="button" class="btn btn-secondary">Required Today</button>
+</div>
+
+<br />
+@using (Html.BeginForm("Index", "Order", FormMethod.Get))
+
+{
+
+    <b>Search By Ship Name</b>
+
+    @Html.TextBox("searchShipName")<input type="submit" value="Search" />
+
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col" class="text-right">Order Date</th>
+            <th scope="col" class="text-right">Shipped Date</th>
+            <th scope="col" class="text-right">Required Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Order o in Model)
+        {
+            <tr>
+                <td><a asp-action="OrderDetail" asp-route-id="@o.OrderID" class="list-group-item list-group-item-action">@o.OrderID</a></td>
+                <td class="text-right">@o.OrderDate</td>
+                <td class="text-right">@o.ShippedDate</td>
+                <td class="text-right">@o.RequiredDate</td>
+            </tr>
+>>>>>>> 4eb4035997ec1071d72431d4216e0571285cccce
         }
         <table class="table table-hover">
             <thead>
